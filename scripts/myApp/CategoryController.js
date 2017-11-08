@@ -1,0 +1,21 @@
+/**
+ * Created by Administrator on 2017/11/8.
+ */
+//栏目浏览
+angular.module('myApp')
+    .controller("CategoryController",['$scope','$http','$rootScope',function($scope,$http,$rootScope){
+        $rootScope.title="栏目浏览";
+        //索引值
+        $rootScope.index=3;
+        //未加载
+        $rootScope.loaded=false;
+        $http({
+            url:"./api/category.php",
+            method:"get"
+        }).success(function(info){
+            //加载完成
+            $rootScope.loaded=true;
+            console.log(info);
+            $scope.columns=info.columns;
+        })
+    }])
